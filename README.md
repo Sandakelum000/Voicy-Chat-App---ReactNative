@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Voicy
 
 A cross-platform chat application built with **React Native and Expo**
@@ -203,3 +204,6 @@ terms; others do not automatically receive permission to reuse the code.
 
 **Voicy** --- A mobile chat application powered by React Native, Expo,
 and Java.
+=======
+# Voicy-Chat-App---ReactNative
+>>>>>>> aa516cd761d8152d4b8f86e332a16efb9ad3306d
