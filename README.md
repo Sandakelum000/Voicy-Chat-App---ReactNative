@@ -1,209 +1,190 @@
-<<<<<<< HEAD
 # Voicy
 
-A cross-platform chat application built with **React Native and Expo**
-for the mobile client and a **Java backend** for server-side
-functionality.
+Voicy is a cross-platform mobile chat application built with **React Native and Expo**, supported by a **Java backend using Hibernate** and deployed on **GlassFish**.
 
-Voicy is designed to provide a mobile messaging experience with a
-separate backend that handles application data and communication between
-clients.
-
-> Update the sections marked with `TODO` to match the exact features,
-> framework, database, and services used in your implementation.
-
-## Screenshots
-
-Add screenshots of the application in the `screenshots/` folder, then
-update the image paths below.
-
-  --------------------------------------------------------------------------------------
-  Chat interface                         Conversations
-  -------------------------------------- -----------------------------------------------
-  ![Chat                                 ![Conversations
-  screen](screenshots/chat-screen.png)   screen](screenshots/conversations-screen.png)
-
-  --------------------------------------------------------------------------------------
+The repository contains the mobile application at the project root and the Java web application in `backend/VoicyApp`. The backend is a **NetBeans Ant project**; it is not a Maven or Gradle project.
 
 ## Tech Stack
 
 ### Mobile application
 
--   React Native
--   Expo
--   JavaScript / TypeScript --- TODO: specify which one you use
--   TODO: navigation library
--   TODO: state management and other mobile libraries
+- React Native
+- Expo
+- TypeScript
+- Node.js and npm
 
 ### Backend
 
--   Java
--   TODO: backend framework (for example, Spring Boot or Jakarta EE)
--   TODO: database
--   TODO: authentication mechanism
--   TODO: real-time communication method (for example, WebSocket)
+- Java
+- Hibernate ORM
+- Apache Ant build system
+- NetBeans project configuration
+- GlassFish application server
+- Java web application (WAR deployment)
 
-## Features
+> Add the exact database, Java version, authentication method, and real-time communication details here if you want to document those implementation choices.
 
--   User-to-user chat
--   TODO: user registration and login
--   TODO: conversation list and chat history
--   TODO: real-time message delivery
--   TODO: message status (sent, delivered, or read)
--   TODO: image, file, or voice-message sharing
--   TODO: user profile management
--   TODO: online/offline presence
+## Project Features
 
-Only keep the features that are implemented in your version of Voicy.
+Voicy is intended to provide a mobile messaging experience with a separate Java backend.
+
+Document only the features that are currently implemented in your version. For example, you can list account registration and login, conversations, message history, real-time messaging, image sharing, profile management, or online presence where applicable.
 
 ## Project Structure
 
-The repository may be organised into separate mobile and backend
-directories. Adjust this example to match your actual folder names.
+```text
+Voicy-Chat-App/
+│
+├── assets/                         # Expo app assets
+│
+├── src/                            # Mobile application source
+│   ├── api/                        # Backend API integration
+│   ├── components/                 # Reusable UI components
+│   ├── screens/                    # Application screens
+│   ├── socket/                     # Socket communication
+│   ├── theme/                      # Colors and theme configuration
+│   └── util/                       # Helper functions and utilities
+│
+├── backend/
+│   └── VoicyApp/                   # Java Hibernate web application
+│       ├── lib/                    # Required Java libraries
+│       ├── nbproject/              # NetBeans Ant project configuration
+│       ├── src/
+│       │   ├── conf/               # Application configuration
+│       │   └── java/               # Java source code
+│       ├── web/
+│       │   ├── WEB-INF/            # Web application configuration
+│       │   ├── ImageFile/          # Image resources or uploads
+│       │   ├── profile-images/     # Profile image resources or uploads
+│       │   └── index.html          # Web application entry page
+│       └── build.xml               # Apache Ant build file
+│
+├── App.tsx                         # Main Expo application component
+├── app.json                        # Expo configuration
+├── index.ts                        # Application entry point
+├── package.json                    # npm dependencies and scripts
+├── package-lock.json               # Locked npm dependency versions
+├── tsconfig.json                   # TypeScript configuration
+├── .gitignore                      # Git ignore rules
+└── README.md                       # Project documentation
+```
 
-``` text
-Voicy/
-├── mobile/                 # React Native + Expo application
-│   ├── app/                # Application routes (if using Expo Router)
-│   ├── assets/             # Images, fonts, and other assets
-│   ├── components/         # Reusable UI components
-│   ├── ...
-│   └── package.json
-│
-├── backend/                # Java backend application
-│   ├── src/
-│   └── ...
-│
-├── screenshots/            # Application screenshots
-├── .gitignore
-└── README.md
+Generated folders such as `node_modules/` and `backend/VoicyApp/build/` are not committed to the repository.
+
+## Prerequisites
+
+Install the following tools:
+
+- Node.js version compatible with the Expo SDK used by this project
+- npm
+- Java JDK compatible with your GlassFish version
+- Apache Ant
+- GlassFish Server
+- Expo Go or an Android/iOS development environment
+
+You can check your local installations with:
+
+```bash
+node --version
+npm --version
+java -version
+ant -version
 ```
 
 ## Getting Started
 
-### Prerequisites
-
-Install the tools required by your project:
-
--   Node.js (use a version compatible with your Expo SDK)
--   npm
--   Java JDK (use the version required by your backend)
--   TODO: backend build tool, such as Maven or Gradle
--   Expo Go or an Android/iOS development environment
-
 ### 1. Clone the repository
 
-``` bash
-git clone https://github.com/YOUR_USERNAME/Voicy.git
-cd Voicy
+```bash
+git clone https://github.com/Sandakelum000/Voicy-Chat-App---ReactNative.git
+cd Voicy-Chat-App---ReactNative
 ```
 
-### 2. Run the backend
+### 2. Set up and run the Java backend
 
-Open a terminal and move into the backend directory:
+The backend is a **NetBeans Java Ant web application** located in `backend/VoicyApp`.
 
-``` bash
-cd backend
+Move into the backend project directory:
+
+```bash
+cd backend/VoicyApp
 ```
 
-TODO: Add the correct command for your backend. For example, if it is a
-Maven Spring Boot project:
+Build the project using Ant:
 
-``` bash
-./mvnw spring-boot:run
+```bash
+ant
 ```
 
-If you use Gradle, Jakarta EE, or another Java framework, replace this
-with the command and deployment steps for your setup.
+To see the build targets defined by the project:
 
-### 3. Configure and run the mobile application
+```bash
+ant -p
+```
 
-Open a new terminal:
+The Ant build generates the web application archive (WAR) and other build output. The generated output is kept out of Git.
 
-``` bash
-cd mobile
+Deploy the generated WAR to your configured GlassFish domain. You can deploy it through the NetBeans GlassFish integration, or use the GlassFish `asadmin` command with the actual WAR path produced by your build:
+
+```bash
+asadmin deploy path/to/generated-application.war
+```
+
+If the application is already deployed and you are redeploying it, use the appropriate redeploy option supported by your GlassFish version.
+
+**Backend configuration:** Check `src/conf/hibernate.cfg.xml` and configure the database connection for your local environment. Do not commit real database passwords or other credentials. The database must be available before the backend can use it.
+
+> The exact WAR filename, context root, database name, and GlassFish domain settings depend on your local project configuration. Check the Ant output and `web/WEB-INF/glassfish-web.xml` for the values used by your application.
+
+### 3. Set up and run the Expo mobile app
+
+From the repository root, open a new terminal and install the dependencies:
+
+```bash
 npm install
 ```
 
-Create the environment file required by the mobile app. For example:
+Start the Expo development server:
 
-``` bash
-cp .env.example .env
-```
-
-Add the configuration values required by your application to `.env`. Do
-not commit real credentials or private secrets.
-
-For a physical device, make sure the API base URL points to an address
-the phone can reach. `localhost` on a phone refers to the phone itself,
-not your development computer.
-
-Start Expo:
-
-``` bash
+```bash
 npx expo start
 ```
 
-Follow the Expo CLI instructions to open the app in Expo Go or an
-emulator/simulator.
+Follow the Expo CLI instructions to open the application in Expo Go, an Android emulator, or an iOS simulator.
 
-## Environment Configuration
+### 4. Configure the backend URL
 
-Create an `.env.example` file containing the names of the variables your
-project needs, with placeholder values only.
+Make sure the mobile app's API configuration points to an address reachable from the device.
 
-Example:
+- For an Android emulator, the host machine may be reachable through the emulator's special host address.
+- For a physical phone, use your computer's local network IP address and ensure both devices are on a network that allows them to communicate.
+- `localhost` on a physical phone refers to the phone itself, not your development computer.
 
-``` env
-EXPO_PUBLIC_API_URL=http://YOUR_LOCAL_NETWORK_IP:8080
-```
-
-Replace this example with the actual variable names and configuration
-used by Voicy. Expo variables prefixed with `EXPO_PUBLIC_` are bundled
-into the client app, so **never put private secrets in them**.
-
-Keep real `.env` files, private keys, service-account files, and
-production credentials out of Git.
-
-## Backend and API
-
-The React Native application communicates with the Java backend through
-its API.
-
-TODO: Document the following details: - Backend framework and Java
-version - Database and setup instructions - API base URL and important
-endpoints - Authentication flow - Real-time messaging approach, if
-implemented
+Update the API base URL in the location used by your app (for example, the relevant configuration in `src/api/`). Do not place private server credentials in the mobile application.
 
 ## Development Notes
 
--   Keep the mobile client and backend configuration aligned.
--   Use a reachable backend URL when testing on a physical device.
--   Do not commit passwords, access tokens, private keys, or production
-    secrets.
--   Configure appropriate authentication, authorization, and database
-    security rules on the backend.
+- Run the backend on GlassFish and the mobile app through Expo.
+- Keep the API base URL and backend context root aligned.
+- Ensure the database connection is configured for the local environment.
+- Keep required third-party Java libraries in `backend/VoicyApp/lib/` if the Ant project depends on them.
+- Do not commit generated build output, `node_modules/`, local environment files, passwords, tokens, or private keys.
+- Use a reachable backend address when testing on a physical device.
 
 ## Contributing
 
 Contributions and suggestions are welcome.
 
-1.  Fork the repository.
-2.  Create a feature branch: `git checkout -b feature/your-feature`.
-3.  Commit your changes: `git commit -m "Add your feature"`.
-4.  Push the branch: `git push origin feature/your-feature`.
-5.  Open a pull request.
+1. Fork the repository.
+2. Create a feature branch: `git checkout -b feature/your-feature`.
+3. Commit your changes: `git commit -m "Describe your change"`.
+4. Push the branch: `git push origin feature/your-feature`.
+5. Open a pull request.
 
 ## License
 
-TODO: Choose a license before publishing this project for reuse. If no
-license is specified, the repository remains under the default copyright
-terms; others do not automatically receive permission to reuse the code.
+No license has been specified yet. Add a `LICENSE` file if you intend to grant others permission to use, modify, and distribute this project.
 
-------------------------------------------------------------------------
+---
 
-**Voicy** --- A mobile chat application powered by React Native, Expo,
-and Java.
-=======
-# Voicy-Chat-App---ReactNative
->>>>>>> aa516cd761d8152d4b8f86e332a16efb9ad3306d
+**Voicy** — A mobile chat application built with React Native, Expo, Java, Hibernate, and GlassFish.
